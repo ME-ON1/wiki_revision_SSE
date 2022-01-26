@@ -17,7 +17,6 @@ exports.processDomainReportEvent = (json_reports, domain_report_per_sec) => {
 	}
 };
 
-// TODO single principle follow
 exports.processUserReportEvent = (
 	json_reports,
 	user_report_per_sec,

@@ -15,3 +15,7 @@
 #### for task2 run :
 
 3. `npm run task2`
+
+## NOTE: These steps are listed taking care of linux users;
+
+## NOTE: run the npm server only after connecting to Internet

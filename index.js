@@ -63,42 +63,45 @@ setInterval(() => {
 				mintue_counter
 		)
 	);
-	eventSource.onmessage = (event) => {
-		// collecting wanted event in empty user_report & domain_report global variable
-		processEvent(event.data, user_report, domain_report);
-		if (second_counter >= MIN_DURATION) {
-			report_obj.push({
-				user_report: user_report,
-				domain_report: domain_report,
-			});
+	try {
+		eventSource.onmessage = (event) => {
+			// collecting wanted event in empty user_report & domain_report global variable
+			processEvent(event.data, user_report, domain_report);
+			if (second_counter >= MIN_DURATION) {
+				report_obj.push({
+					user_report: user_report,
+					domain_report: domain_report,
+				});
 
-			// empty object for another round of filling
-			user_report = {};
-			domain_report = {};
-			// start another minute when 60 seconds over
-			second_counter = 0;
-			printToConsole(report_obj);
-			// when running for task 2 duration is
-			if (LONG_WINDOW_DURATION !== undefined) {
-				mintue_counter++;
-				// only start removing first element
-				// when we have > 5 elements
-				if (
-					parseInt(
-						mintue_counter /
-							LONG_WINDOW_DURATION
-					) > 0
-				) {
-					console.log(LONG_WINDOW_DURATION);
+				// empty object for another round of filling
+				user_report = {};
+				domain_report = {};
+				// start another minute when 60 seconds over
+				second_counter = 0;
+				printToConsole(report_obj);
+				// when running for task 2 duration is
+				if (LONG_WINDOW_DURATION !== undefined) {
+					mintue_counter++;
+					// only start removing first element
+					// when we have > 5 elements
+					if (
+						parseInt(
+							mintue_counter /
+								LONG_WINDOW_DURATION
+						) > 0
+					) {
+						report_obj.shift();
+					}
+				} else {
+					// remove first element after printing
+					// & pushing in it the next minute ;
 					report_obj.shift();
 				}
-			} else {
-				// remove first element after printing
-				// & pushing in it the next minute ;
-				report_obj.shift();
 			}
-		}
-	};
+		};
+	} catch (err) {
+		console.log("There is some error!", err);
+	}
 }, 1000);
 
 const printToConsole = (report_obj) => {
