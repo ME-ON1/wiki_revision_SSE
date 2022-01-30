@@ -2,13 +2,17 @@
 
 1.`cd <name_of_extract_folder>`
 
-### make sure node >= 12.0.x, npm >= 8.1.x is installed on your machine
+### make sure docker is installed and running
 
-2. `npm install --save`
+### check with sudo systemctl status docker.service
 
-### start listening
+2. `docker build . -t <user-name>/image-name`
 
-#### for task1 run :
+### Now to run start the docker container in interactive mode
+
+2. `docker run -it <user-name>/image-name /bin/bash`
+
+### NOW in the interactive shell run scripts for task1 or task2
 
 3. `npm run task1`
 
