@@ -1,5 +1,8 @@
 # STEPS TO START PROCESSING OF SSE ;
 
+Gathering the changes done in wikipedia domains over particular period of time with the help of `revision create` APIs. 
+
+
 1.`cd <name_of_extract_folder>`
 
 ### make sure docker is installed and running
